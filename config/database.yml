@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: my_lists_development
+
+test:
+  <<: *default
+  database: my_lists_test
+
+production:
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: my_lists
+  username: <%= ENV['USERNAME'] %>
+  password: <%= ENV['PASSWORD'] %>
+  host: <%= ENV['HOSTNAME'] %>
+  port: <%= ENV['PORT'] %>
