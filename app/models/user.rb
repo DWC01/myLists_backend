@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   before_create :generate_auth_token
+  after_create :create_avatar
+  has_one :avatar
+  
   has_secure_password
   email_regex = /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}\Z/i
 
@@ -8,7 +11,7 @@ class User < ActiveRecord::Base
   validates_presence_of     :first_name, :email
 
   validates :password_confirmation, presence: true, on: :create
-  validates :password, presence: true, on: :create, length: {minimum:8}
+  validates :password, presence: true, on: :create, length: {minimum:6}
 
   def generate_auth_token
     self.auth_token = SecureRandom.uuid.gsub(/\-/,'')

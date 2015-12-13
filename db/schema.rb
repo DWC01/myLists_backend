@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20151211214928) do
 
   create_table "avatars", force: :cascade do |t|
     t.string   "name"
+    t.string   "meta_data"
     t.string   "original_url"
     t.string   "profile_url"
     t.string   "nav_url"
